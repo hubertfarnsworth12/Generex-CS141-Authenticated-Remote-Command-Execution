@@ -1,4 +1,4 @@
-# Generex-CS141-Authenticated-Remote-Command-Execution
+# CVE-2022-42457 Generex-CS141-Authenticated-Remote-Command-Execution
 
 ## Description:
 The device [CS141](https://www.generex.de/products/ups) is an Ethernet Adapter for the control and the management of UPS Facilities. A list of supported UPS Vendors can be found at the bottom.
@@ -6,6 +6,8 @@ The device [CS141](https://www.generex.de/products/ups) is an Ethernet Adapter f
 The Firmware update process allows to execute arbitrary commands. Most of the time, these type of devices are overlooked and never controlled.
 Therefore, it is from value to execute commands directly on the underlying Linux.
 
+## Vulnerable versions
+At the time of writing, all versions up to the latest version '2.10' are vulnerable. Therefore, no patch is currently available.
 
 ## Exploit
 The update script located in `/usr/bin/gxserve-update.sh` simply executes the script `ìnstall.sh` inside a gzip compressed tarball as root.
@@ -17,11 +19,11 @@ Therefore, to execute commands simply create a tarball with a `version` and `ins
 
 The following command creates the update tarball with the install.sh script which will be executed. Please note, the `./` is important and the version number must be greater than the current version.
 ```
-tar cvzf update208.tar.gz ./install.sh version
+tar cvzf update211.tar.gz ./install.sh version
 ```
 The `version` file should look like
 ```
-version=2.08
+version=2.11
 ```
 The `install.sh` may look like
 ```
