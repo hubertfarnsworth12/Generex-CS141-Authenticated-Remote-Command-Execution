@@ -7,7 +7,7 @@ The Firmware update process allows to execute arbitrary commands. Most of the ti
 Therefore, it is from value to execute commands directly on the underlying Linux.
 
 ## Vulnerable versions
-At the time of writing, all versions up to the latest version '2.10' are vulnerable. Therefore, no patch is currently available.
+At the time of writing, **all** versions up to the latest version `2.10` are vulnerable. Therefore, no patch is currently available.
 
 ## Exploit
 The update script located in `/usr/bin/gxserve-update.sh` simply executes the script `ìnstall.sh` inside a gzip compressed tarball as root.
@@ -39,6 +39,10 @@ rm -f /tmp/install.sh
 echo -n > /var/log/update.log
 sync
 ```
+
+
+Now upload you tarball as new firmware and press start. This will run the vulnerable function `run_update()` and execute your install.sh script.
+![alt text](webinterface.png "upload")
 
 
 Further more, the client-side application has been done with the EOL Anuglar project, which contains a well known [Prototype Pollution vulnerability](https://security.snyk.io/vuln/SNYK-JS-ANGULAR-534884).
